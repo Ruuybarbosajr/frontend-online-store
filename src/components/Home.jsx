@@ -24,7 +24,7 @@ class Home extends React.Component {
     return (
       <>
         <section>
-          Categor
+          Categorias:
           { categoriesList.map(({ id, name }) => (
             <CategoryList
               key={ id }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Input extends React.Component {
+class Home extends React.Component {
   render() {
     return (
       <section>
@@ -10,11 +10,11 @@ class Input extends React.Component {
           </label>
         </form>
         <h2 data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria
+          Digite algum termo de pesquisa ou escolha uma categoria.
         </h2>
       </section>
     );
   }
 }
 
-export default Input;
+export default Home;

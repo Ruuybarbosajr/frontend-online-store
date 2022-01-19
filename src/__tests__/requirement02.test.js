@@ -7,7 +7,7 @@ describe('2 - Crie uma página de listagem de produtos vazia', () => {
     render(<App />);
   });
 
-  it(`A tela contém a mensagem pedida: 'Digite algum termo de pesquisa ou escolha uma
+  it.only(`A tela contém a mensagem pedida: 'Digite algum termo de pesquisa ou escolha uma
       categoria.'`, () => {
     render(<App />);
     expect(screen.getByTestId('home-initial-message')).toHaveTextContent(

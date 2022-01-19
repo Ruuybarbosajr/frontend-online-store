@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Input extends React.Component {
+class Home extends React.Component {
   render() {
     return (
       <section>
@@ -17,4 +17,4 @@ class Input extends React.Component {
   }
 }
 
-export default Input;
+export default Home;

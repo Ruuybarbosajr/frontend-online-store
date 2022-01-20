@@ -1,15 +1,12 @@
 import React from 'react';
 
-import Search from './pages/Search';
-
 import { BrowserRouter, Route } from 'react-router-dom';
-import Home from './components/Home';
+import Home from './pages/Home';
+import './index.css';
 
 function App() {
   return (
     <div className="App">
-
-      <Search />
 
       <BrowserRouter>
         <Route path="/" component={ Home } />

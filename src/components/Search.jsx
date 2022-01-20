@@ -25,13 +25,13 @@ class Search extends React.Component {
           title={ product.title }
           image={ product.thumbnail }
           price={ product.price }
-          addItem={ addItem }
         >
           <ProductCard
             key={ product.id }
             title={ product.title }
             image={ product.thumbnail }
             price={ product.price }
+            addItem={ addItem }
           />
         </Link>
       ))
@@ -62,7 +62,7 @@ class Search extends React.Component {
           Pesquisar
         </button>
         <div className="itens-list">
-          {createList && this.renderProductList()}
+          { createList && this.renderProductList() }
         </div>
 
       </div>

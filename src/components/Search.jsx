@@ -1,5 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import '../styles/Search.css';
 
@@ -17,14 +18,22 @@ class Search extends React.Component {
     }
     return (
       productList.map((product) => (
-        <ProductCard
+        <Link
+          to={ `/productDetails/${product.id}` }
+          data-testid="product-detail-link"
           key={ product.id }
           title={ product.title }
           image={ product.thumbnail }
           price={ product.price }
           addItem={ addItem }
-        />
-
+        >
+          <ProductCard
+            key={ product.id }
+            title={ product.title }
+            image={ product.thumbnail }
+            price={ product.price }
+          />
+        </Link>
       ))
     );
   }

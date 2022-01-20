@@ -8,7 +8,7 @@ class ProductDetails extends React.Component {
       <div>
         <Header />
         <h1>{`${productName} - R$ ${productPrice}`}</h1>
-        <img src={productImage} alt={productName} />
+        <img src={ productImage } alt={ productName } />
         <ol>
           <li>{productAttr1}</li>
           <li>{productAttr2}</li>

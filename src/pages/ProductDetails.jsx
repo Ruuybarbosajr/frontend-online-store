@@ -19,12 +19,12 @@ class ProductDetails extends React.Component {
     const { match: { params: { id } } } = this.props;
     const response = await fetch(`https://api.mercadolibre.com/items/${id}`);
     const data = await response.json();
-    // console.log(data.attributes);
     this.setState({ objProduct: data });
   }
 
   render() {
     const { objProduct } = this.state;
+    const { addItem } = this.props;
     return (
       <div>
         <Header />
@@ -37,6 +37,16 @@ class ProductDetails extends React.Component {
         <ul>
           <li>{ `Quantidade em Estoque: ${objProduct.available_quantity}` }</li>
         </ul>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ addItem }
+          title={ objProduct.title }
+          image={ objProduct.thumbnail }
+          price={ objProduct.base_price }
+        >
+          Adicionar
+        </button>
       </div>
     );
   }
@@ -48,6 +58,7 @@ ProductDetails.propTypes = {
       id: PropTypes.string,
     }),
   }).isRequired,
+  addItem: PropTypes.func.isRequired,
 };
 
 export default ProductDetails;

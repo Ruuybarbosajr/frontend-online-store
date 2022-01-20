@@ -62,8 +62,7 @@ class Home extends React.Component {
     } = this.state;
 
     return (
-      <>
-        <Header />
+      <div>
         <div className="home">
           <section>
             Categorias
@@ -77,6 +76,7 @@ class Home extends React.Component {
               />)) }
           </section>
           <section className="search-block">
+            <Header />
             <Search
               handleChange={ this.handleChange }
               searchingForProducts={ this.searchingForProducts }
@@ -87,7 +87,7 @@ class Home extends React.Component {
             { !createList && this.renderInitialPhrase() }
           </section>
         </div>
-      </>
+      </div>
     );
   }
 }

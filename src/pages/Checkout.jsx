@@ -5,7 +5,7 @@ class Checkout extends React.Component {
   render() {
     return (
       <div>
-          <p>Checkout</p>
+        <p>Checkout</p>
       </div>
     );
   }

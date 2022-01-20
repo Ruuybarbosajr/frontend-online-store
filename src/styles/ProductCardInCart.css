@@ -1,13 +1,13 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 .card-product {
-  display: flex;
-  border: 1px solid black;
   align-items: center;
+  border: 1px solid black;
+  display: flex;
   justify-content: space-evenly;
   max-width: 60vw;
 }
@@ -18,8 +18,8 @@
 
 .div-card-qnt {
   display: flex;
-  min-width: 6vw;
   justify-content: space-around;
+  min-width: 6vw;
 }
 
 .div-card-qnt button {

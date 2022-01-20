@@ -7,7 +7,14 @@ class ProductDetails extends React.Component {
     return (
       <div>
         <Header />
-        <p>texto</p>
+        <h1>{`${productName} - R$ ${productPrice}`}</h1>
+        <img src={productImage} alt={productName} />
+        <ol>
+          <li>{productAttr1}</li>
+          <li>{productAttr2}</li>
+          <li>{productAttr3}</li>
+        </ol>
+        <p>{productId}</p>
       </div>
     );
   }

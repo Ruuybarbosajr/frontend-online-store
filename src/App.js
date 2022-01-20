@@ -15,32 +15,32 @@ class App extends React.Component {
     };
 
     this.addItem = this.addItem.bind(this);
-    this.outraFuncao = this.outraFuncao.bind(this);
-  }
-
-  outraFuncao(arr) {
-    arr[0].quantity = 5;
-
-    console.log(arr);
   }
 
   addItem({ target: { parentElement } }) {
     const title = parentElement.firstChild.innerText;
     const thumbnail = parentElement.children[1].src;
     const price = Number(parentElement.children[2].innerText);
+
     const { cartItems } = this.state;
-    console.log(cartItems.find((item) => item.title === title));
 
-    this.setState((prevState) => ({
-      cartItems: [...prevState.cartItems, {
-        title,
-        thumbnail,
-        price,
-        quantity: 1,
-      }],
-    }), () => this.outraFuncao(cartItems));
+    if (
+      cartItems.some((item) => item.title === title)
+    ) {
+      const item = cartItems.find((itemCart) => itemCart.title === title);
+      item.quantity += 1;
 
-    console.log(cartItems);
+      this.setState({ cartItems });
+    } else {
+      this.setState((prevState) => ({
+        cartItems: [...prevState.cartItems, {
+          title,
+          thumbnail,
+          price,
+          quantity: 1,
+        }],
+      }));
+    }
   }
 
   render() {

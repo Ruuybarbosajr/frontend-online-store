@@ -22,6 +22,10 @@ class Home extends React.Component {
     this.getAllCategory();
   }
 
+  generateListByCategory = (type) => {
+    if (type === 'radio') this.searchingForProducts();
+  }
+
   searchingForProducts = async () => {
     const { searchValue, category } = this.state;
     const apiResult = await getProductsFromCategoryAndQuery(category, searchValue);
@@ -30,8 +34,8 @@ class Home extends React.Component {
   }
 
   handleChange = (event) => {
-    const { value, name } = event.target;
-    this.setState({ [name]: value });
+    const { value, name, type } = event.target;
+    this.setState({ [name]: value }, () => this.generateListByCategory(type));
   }
 
   handleClickRadio = (event) => {

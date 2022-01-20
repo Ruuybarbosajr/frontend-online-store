@@ -16,6 +16,12 @@ class ProductCard extends React.Component {
           alt={ title }
         />
         <span>{ price }</span>
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+        >
+          Comprar
+        </button>
       </div>
     );
   }

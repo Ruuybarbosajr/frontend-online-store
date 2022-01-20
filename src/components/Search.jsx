@@ -62,7 +62,7 @@ class Search extends React.Component {
 Search.propTypes = {
   searchValue: propTypes.string.isRequired,
   searchingForProducts: propTypes.func.isRequired,
-  createList: propTypes.func.isRequired,
+  createList: propTypes.bool.isRequired,
   handleChange: propTypes.func.isRequired,
   productList: propTypes.arrayOf(
     propTypes.object,

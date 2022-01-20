@@ -13,7 +13,7 @@ function App() {
         <Switch>
           <Route path="/shopping-cart" component={ ShoppingCartPage } exact />
           <Route exact path="/" component={ Home } />
-          <Route exact path="/productDetails/:id" compponet={ ProductDetails } />
+          <Route exact path="/productDetails/:id" component={ ProductDetails } />
           <Route exact path="/checkout" component={ Checkout } />
         </Switch>
       </BrowserRouter>

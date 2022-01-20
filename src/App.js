@@ -17,8 +17,10 @@ class App extends React.Component {
     this.addItem = this.addItem.bind(this);
   }
 
+
   addItem(event) {
     const { title, image, price } = event.target.attributes;
+
     const { cartItems } = this.state;
 
     if (

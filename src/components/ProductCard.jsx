@@ -43,6 +43,7 @@ ProductCard.propTypes = {
   title: PropType.string.isRequired,
   image: PropType.string.isRequired,
   price: PropType.number.isRequired,
+  addItem: PropType.func.isRequired,
 };
 
 export default ProductCard;

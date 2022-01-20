@@ -1,3 +1,4 @@
+import propTypes from 'prop-types';
 import React from 'react';
 import CategoryList from '../components/CategoryList';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
@@ -93,5 +94,9 @@ class Home extends React.Component {
     );
   }
 }
+
+Home.propTypes = {
+  addItem: propTypes.func.isRequired,
+};
 
 export default Home;

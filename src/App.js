@@ -9,7 +9,6 @@ import Checkout from './pages/Checkout';
 function App() {
   return (
     <div className="App">
-
       <BrowserRouter>
         <Switch>
           <Route path="/shopping-cart" component={ ShoppingCartPage } exact />
@@ -18,7 +17,6 @@ function App() {
           <Route exact path="/checkout" component={ Checkout } />
         </Switch>
       </BrowserRouter>
-
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ProductCartInCart from '../components/ProductCartInCart';
+import ProductCardInCart from '../components/ProductCardInCart';
 import ShoppingCartIcon from '../shopping-cart.png';
 
 // const product = [
@@ -83,7 +83,7 @@ export default class ShoppingCartPage extends React.Component {
             </section>
             <section>
               { shoppingCart.map(((producting, index) => (
-                <ProductCartInCart
+                <ProductCardInCart
                   key={ index }
                   thumbnail={ producting.image }
                   title={ producting.title }

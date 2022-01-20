@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/ProductCardInCart.css';
 
-export default class ProductCartInCart extends Component {
+export default class ProductCardInCart extends Component {
   constructor(props) {
     super(props);
 
@@ -76,7 +76,7 @@ export default class ProductCartInCart extends Component {
   }
 }
 
-ProductCartInCart.propTypes = {
+ProductCardInCart.propTypes = {
   qntProduct: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,

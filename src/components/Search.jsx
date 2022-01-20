@@ -1,6 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import ProductCard from './ProductCard';
+import '../styles/Search.css';
 
 const productNotFoundPhrase = 'Nenhum produto foi encontrado';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class ShoppingCart extends React.Component {
+export default class ShoppingCartPage extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -25,11 +25,11 @@ export default class ShoppingCart extends React.Component {
     return (
       <div>
         { isCartEmpty ? (
-          <p
+          <h3
             data-testid="shopping-cart-empty-message"
           >
             Seu carrinho está vazio
-          </p>
+          </h3>
         ) : (
           <p>
             { shoppingCart }

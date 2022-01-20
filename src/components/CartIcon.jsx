@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '../shopping-cart.png';
+import '../styles/CartIcon.css';
 
 export default class CartIcon extends React.Component {
   render() {

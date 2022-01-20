@@ -4,7 +4,9 @@ import '../styles/Checkout.css';
 class Checkout extends React.Component {
   render() {
     return (
-      <div />
+      <div>
+          <p>Checkout</p>
+      </div>
     );
   }
 }

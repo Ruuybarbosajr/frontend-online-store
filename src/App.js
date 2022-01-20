@@ -17,11 +17,8 @@ class App extends React.Component {
     this.addItem = this.addItem.bind(this);
   }
 
-  addItem({ target: { parentElement } }) {
-    const title = parentElement.firstChild.innerText;
-    const thumbnail = parentElement.children[1].src;
-    const price = Number(parentElement.children[2].innerText);
-
+  addItem(event) {
+    const { title, image, price } = event.target.attributes;
     const { cartItems } = this.state;
 
     if (
@@ -35,7 +32,7 @@ class App extends React.Component {
       this.setState((prevState) => ({
         cartItems: [...prevState.cartItems, {
           title,
-          thumbnail,
+          image,
           price,
           quantity: 1,
         }],
@@ -63,7 +60,6 @@ class App extends React.Component {
       </div>
     );
   }
-
 }
 
 export default App;

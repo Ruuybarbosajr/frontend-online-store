@@ -2,6 +2,7 @@ import React from 'react';
 import CategoryList from '../components/CategoryList';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Search from '../components/Search';
+import '../styles/Home.css';
 
 const initialPhrase = 'Digite algum termo de pesquisa ou escolha uma categoria.';
 

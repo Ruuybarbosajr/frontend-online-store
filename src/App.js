@@ -1,22 +1,69 @@
 import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import ShoppingCartPage from './pages/ShoppingCartPage';
+import './index.css';
+import Home from './pages/Home';
+import ProductDetails from './pages/ProductDetails';
+import Checkout from './pages/Checkout';
 
-import Search from './pages/Search';
+class App extends React.Component {
+  constructor() {
+    super();
 
-import { BrowserRouter, Route } from 'react-router-dom';
-import Home from './components/Home';
+    this.state = {
+      cartItems: [],
+    };
 
-function App() {
-  return (
-    <div className="App">
+    this.addItem = this.addItem.bind(this);
+  }
 
-      <Search />
+  addItem({ target: { parentElement } }) {
+    const title = parentElement.firstChild.innerText;
+    const thumbnail = parentElement.children[1].src;
+    const price = Number(parentElement.children[2].innerText);
 
-      <BrowserRouter>
-        <Route path="/" component={ Home } />
-      </BrowserRouter>
+    const { cartItems } = this.state;
 
-    </div>
-  );
+    if (
+      cartItems.some((item) => item.title === title)
+    ) {
+      const item = cartItems.find((itemCart) => itemCart.title === title);
+      item.quantity += 1;
+
+      this.setState({ cartItems });
+    } else {
+      this.setState((prevState) => ({
+        cartItems: [...prevState.cartItems, {
+          title,
+          thumbnail,
+          price,
+          quantity: 1,
+        }],
+      }));
+    }
+  }
+
+  render() {
+    const { cartItems } = this.state;
+
+    return (
+      <div className="App">
+        <BrowserRouter>
+          <Switch>
+            <Route
+              exact
+              path="/shopping-cart"
+              render={ () => <ShoppingCartPage cartItems={ cartItems } /> }
+            />
+            <Route exact path="/" render={ () => <Home addItem={ this.addItem } /> } />
+            <Route exact path="/productDetails/:id" component={ ProductDetails } />
+            <Route exact path="/checkout" component={ Checkout } />
+          </Switch>
+        </BrowserRouter>
+      </div>
+    );
+  }
+
 }
 
 export default App;

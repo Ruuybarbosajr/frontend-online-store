@@ -1,0 +1,20 @@
+.search-block {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+  .search-bar {
+    width: 400px;
+    height: 30px;
+    margin-bottom: 20px;
+  }
+
+  .itens-list {
+    margin: 30px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  

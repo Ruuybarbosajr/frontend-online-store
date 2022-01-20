@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ShoppingCartIcon from '../shopping-cart.png';
 
 export default class Button extends React.Component {
   render() {
@@ -9,7 +10,11 @@ export default class Button extends React.Component {
           data-testid="shopping-cart-button"
           to="/shopping-cart"
         >
-          carrinho de compras
+          <img
+            className="shopping-cart-icon"
+            src={ ShoppingCartIcon }
+            alt="shopping cart"
+          />
         </Link>
       </div>
     );

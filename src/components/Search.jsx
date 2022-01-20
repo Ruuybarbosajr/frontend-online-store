@@ -25,13 +25,13 @@ class Search extends React.Component {
           title={ product.title }
           image={ product.thumbnail }
           price={ product.price }
-          addItem={ addItem }
         >
           <ProductCard
             key={ product.id }
             title={ product.title }
             image={ product.thumbnail }
             price={ product.price }
+            addItem={ addItem }
           />
         </Link>
       ))
@@ -75,6 +75,7 @@ Search.propTypes = {
   searchingForProducts: propTypes.func.isRequired,
   createList: propTypes.bool.isRequired,
   handleChange: propTypes.func.isRequired,
+  addItem: propTypes.func.isRequired,
   productList: propTypes.arrayOf(
     propTypes.object,
   ).isRequired,

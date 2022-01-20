@@ -17,6 +17,8 @@ class App extends React.Component {
     this.addItem = this.addItem.bind(this);
   }
 
+
+
   addItem({ target: { parentElement } }) {
     const title = parentElement.firstChild.innerText;
     const thumbnail = parentElement.children[1].src;

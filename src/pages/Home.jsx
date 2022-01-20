@@ -2,6 +2,8 @@ import React from 'react';
 import CategoryList from '../components/CategoryList';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Search from '../components/Search';
+import '../styles/Home.css';
+import Header from '../components/Header';
 
 const initialPhrase = 'Digite algum termo de pesquisa ou escolha uma categoria.';
 
@@ -60,29 +62,32 @@ class Home extends React.Component {
     } = this.state;
 
     return (
-      <div className="home">
-        <section>
-          Categorias
-          { categoriesList.map(({ id, name }) => (
-            <CategoryList
-              key={ id }
-              name="category"
-              id={ id }
-              nameCategory={ name }
-              onChange={ this.handleChange }
-            />)) }
-        </section>
-        <section className="search-block">
-          <Search
-            handleChange={ this.handleChange }
-            searchingForProducts={ this.searchingForProducts }
-            searchValue={ searchValue }
-            createList={ createList }
-            productList={ productList }
-          />
-          { !createList && this.renderInitialPhrase() }
-        </section>
-      </div>
+      <>
+        <Header />
+        <div className="home">
+          <section>
+            Categorias
+            { categoriesList.map(({ id, name }) => (
+              <CategoryList
+                key={ id }
+                name="category"
+                id={ id }
+                nameCategory={ name }
+                onChange={ this.handleChange }
+              />)) }
+          </section>
+          <section className="search-block">
+            <Search
+              handleChange={ this.handleChange }
+              searchingForProducts={ this.searchingForProducts }
+              searchValue={ searchValue }
+              createList={ createList }
+              productList={ productList }
+            />
+            { !createList && this.renderInitialPhrase() }
+          </section>
+        </div>
+      </>
     );
   }
 }

@@ -17,6 +17,7 @@ class Home extends React.Component {
       productList: [],
       createList: false,
       category: '',
+
     };
   }
 
@@ -60,7 +61,7 @@ class Home extends React.Component {
       createList,
       productList,
     } = this.state;
-
+    const { addItem } = this.props;
     return (
       <div>
         <div className="home">
@@ -83,6 +84,7 @@ class Home extends React.Component {
               searchValue={ searchValue }
               createList={ createList }
               productList={ productList }
+              addItem={ addItem }
             />
             { !createList && this.renderInitialPhrase() }
           </section>

@@ -75,6 +75,7 @@ Search.propTypes = {
   searchingForProducts: propTypes.func.isRequired,
   createList: propTypes.bool.isRequired,
   handleChange: propTypes.func.isRequired,
+  addItem: propTypes.func.isRequired,
   productList: propTypes.arrayOf(
     propTypes.object,
   ).isRequired,

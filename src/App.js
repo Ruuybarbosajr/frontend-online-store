@@ -6,19 +6,63 @@ import Home from './pages/Home';
 import ProductDetails from './pages/ProductDetails';
 import Checkout from './pages/Checkout';
 
-function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Switch>
-          <Route path="/shopping-cart" component={ ShoppingCartPage } exact />
-          <Route exact path="/" component={ Home } />
-          <Route exact path="/productDetails/:id" compponet={ ProductDetails } />
-          <Route exact path="/checkout" component={ Checkout } />
-        </Switch>
-      </BrowserRouter>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      cartItems: [],
+    };
+
+    this.addItem = this.addItem.bind(this);
+    this.outraFuncao = this.outraFuncao.bind(this);
+  }
+
+  outraFuncao(arr) {
+    arr[0].quantity = 5;
+
+    console.log(arr);
+  }
+
+  addItem({ target: { parentElement } }) {
+    const title = parentElement.firstChild.innerText;
+    const thumbnail = parentElement.children[1].src;
+    const price = Number(parentElement.children[2].innerText);
+    const { cartItems } = this.state;
+    console.log(cartItems.find((item) => item.title === title));
+
+    this.setState((prevState) => ({
+      cartItems: [...prevState.cartItems, {
+        title,
+        thumbnail,
+        price,
+        quantity: 1,
+      }],
+    }), () => this.outraFuncao(cartItems));
+
+    console.log(cartItems);
+  }
+
+  render() {
+    const { cartItems } = this.state;
+
+    return (
+      <div className="App">
+        <BrowserRouter>
+          <Switch>
+            <Route
+              exact
+              path="/shopping-cart"
+              render={ () => <ShoppingCartPage cartItems={ cartItems } /> }
+            />
+            <Route exact path="/" render={ () => <Home addItem={ this.addItem } /> } />
+            <Route exact path="/productDetails/:id" compponet={ ProductDetails } />
+            <Route exact path="/checkout" component={ Checkout } />
+          </Switch>
+        </BrowserRouter>
+      </div>
+    );
+  }
 }
 
 export default App;

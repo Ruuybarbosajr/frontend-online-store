@@ -7,7 +7,7 @@ const productNotFoundPhrase = 'Nenhum produto foi encontrado';
 
 class Search extends React.Component {
   renderProductList = () => {
-    const { productList } = this.props;
+    const { productList, addItem } = this.props;
     if (productList.length === 0) {
       return (
         <span>
@@ -22,6 +22,7 @@ class Search extends React.Component {
           title={ product.title }
           image={ product.thumbnail }
           price={ product.price }
+          addItem={ addItem }
         />
 
       ))

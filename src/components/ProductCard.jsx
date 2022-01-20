@@ -4,7 +4,7 @@ import '../styles/ProductCard.css';
 
 class ProductCard extends React.Component {
   render() {
-    const { title, image, price } = this.props;
+    const { title, image, price, addItem } = this.props;
     return (
       <div
         data-testid="product"
@@ -20,6 +20,7 @@ class ProductCard extends React.Component {
         <button
           type="button"
           data-testid="product-add-to-cart"
+          onClick={ addItem }
         >
           Comprar
         </button>

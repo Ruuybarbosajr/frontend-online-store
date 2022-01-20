@@ -19,7 +19,7 @@ class ProductDetails extends React.Component {
     const { match: { params: { id } } } = this.props;
     const response = await fetch(`https://api.mercadolibre.com/items/${id}`);
     const data = await response.json();
-    console.log(data);
+    // console.log(data.attributes);
     this.setState({ objProduct: data });
   }
 
@@ -31,11 +31,11 @@ class ProductDetails extends React.Component {
         <h1
           data-testid="product-detail-name"
         >
-          {`${objProduct.title} - R$ ${objProduct.base_price}`}
+          { `${objProduct.title} - R$ ${objProduct.base_price}` }
         </h1>
         <img src={ objProduct.thumbnail } alt={ objProduct.title } />
         <ul>
-          <li>{`Quantidade em Estoque: ${objProduct.available_quantity}`}</li>
+          <li>{ `Quantidade em Estoque: ${objProduct.available_quantity}` }</li>
         </ul>
       </div>
     );

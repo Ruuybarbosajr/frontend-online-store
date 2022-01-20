@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '../shopping-cart.png';
 
-export default class Button extends React.Component {
+export default class CartIcon extends React.Component {
   render() {
     return (
       <div>

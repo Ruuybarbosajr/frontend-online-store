@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '../components/Button';
 
 export default class ShoppingCart extends React.Component {
   constructor() {
@@ -11,7 +10,7 @@ export default class ShoppingCart extends React.Component {
   }
 
   componentDidMount() {
-    checkCart();
+    this.checkCart();
   }
 
   checkCart() {
@@ -25,7 +24,6 @@ export default class ShoppingCart extends React.Component {
     const { shoppingCart, isCartEmpty } = this.state;
     return (
       <div>
-        <Button />
         { isCartEmpty ? (
           <p
             data-testid="shopping-cart-empty-message"

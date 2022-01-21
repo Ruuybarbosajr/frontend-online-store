@@ -47,6 +47,7 @@ class ProductDetails extends React.Component {
             title={ objProduct.title }
             image={ objProduct.thumbnail }
             price={ objProduct.base_price }
+            maxQuantity={ objProduct.available_quantity }
           >
             Adicionar
           </button>

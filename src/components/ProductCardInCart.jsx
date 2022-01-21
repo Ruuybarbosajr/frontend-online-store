@@ -11,6 +11,7 @@ export default class ProductCardInCart extends Component {
     this.state = {
       qntProductState: qntProduct,
       totalPrice: qntProduct * price,
+      btnSumDisable: false,
     };
   }
 
@@ -31,12 +32,22 @@ export default class ProductCardInCart extends Component {
 
   handleClickSum = () => {
     this.setState((prevState) => (
-      { qntProductState: prevState.qntProductState + 1 }), () => this.checkPrice());
+      { qntProductState: prevState.qntProductState + 1 }),
+    () => this.disableBtn());
   };
+
+  disableBtn() {
+    this.checkPrice();
+    const { qntProductState } = this.state;
+    const { maxQuantity } = this.props;
+    if (Number(qntProductState) === Number(maxQuantity)) {
+      this.setState({ btnSumDisable: true });
+    }
+  }
 
   render() {
     const { thumbnail, title } = this.props;
-    const { qntProductState, totalPrice } = this.state;
+    const { qntProductState, totalPrice, btnSumDisable } = this.state;
 
     return (
       <section className="card-product">
@@ -61,6 +72,7 @@ export default class ProductCardInCart extends Component {
             type="button"
             data-testid="product-increase-quantity"
             onClick={ this.handleClickSum }
+            disabled={ btnSumDisable }
           >
             +
           </button>
@@ -77,6 +89,7 @@ export default class ProductCardInCart extends Component {
 }
 
 ProductCardInCart.propTypes = {
+  maxQuantity: PropTypes.string.isRequired,
   qntProduct: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,

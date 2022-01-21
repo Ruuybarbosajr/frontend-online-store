@@ -25,7 +25,7 @@ class ProductDetails extends React.Component {
 
   render() {
     const { objProduct } = this.state;
-    const { addItem } = this.props;
+    const { addItem, match: { params: { id } } } = this.props;
     return (
       <div>
         <Header />
@@ -50,7 +50,7 @@ class ProductDetails extends React.Component {
           >
             Adicionar
           </button>
-          <RatingForm />
+          <RatingForm pageId={ id } />
         </main>
       </div>
     );

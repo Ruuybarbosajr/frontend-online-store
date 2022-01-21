@@ -21,7 +21,6 @@ class ProductDetails extends React.Component {
     const { match: { params: { id } } } = this.props;
     const response = await fetch(`https://api.mercadolibre.com/items/${id}`);
     const data = await response.json();
-    // console.log(data.shipping.free_shipping);
     this.setState({ objProduct: data, isFreeShipping: data.shipping.free_shipping });
   }
 

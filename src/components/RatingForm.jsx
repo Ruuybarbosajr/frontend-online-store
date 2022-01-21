@@ -93,6 +93,7 @@ class RatingForm extends React.Component {
                     className="radios"
                     type="radio"
                     name="rating"
+                    id={ `${index}-of-stars` }
                     value={ ratingValue }
                     onChange={ this.handleChange }
                     data-testid={ `${index + 1}-rating` }

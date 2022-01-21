@@ -25,6 +25,10 @@ class Search extends React.Component {
           price={ product.price }
           addItem={ addItem }
           id={ product.id }
+          freeShipping={
+            product.shipping
+            && product.shipping.free_shipping
+          }
         />
       ))
     );

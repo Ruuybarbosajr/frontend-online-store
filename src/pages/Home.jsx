@@ -34,6 +34,7 @@ class Home extends React.Component {
     const { searchValue, category } = this.state;
     const apiResult = await getProductsFromCategoryAndQuery(category, searchValue);
     const searchResults = apiResult.results;
+    console.log(searchResults);
     this.setState({ productList: searchResults, createList: true });
   }
 

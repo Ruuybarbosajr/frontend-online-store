@@ -90,10 +90,9 @@ class RatingForm extends React.Component {
               const ratingValue = index + 1;
               return (
                 // eslint-disable-next-line jsx-a11y/label-has-associated-control
-                <label htmlFor="rating" key={ `${index}-of-stars` }>
+                <label key={ `${index}-of-stars` }>
                   <input
                     className="radios"
-                    id="rating"
                     type="radio"
                     name="rating"
                     value={ ratingValue }

@@ -17,10 +17,8 @@ class App extends React.Component {
     this.addItem = this.addItem.bind(this);
   }
 
-  addItem({ target: { parentElement } }) {
-    const title = parentElement.firstChild.innerText;
-    const thumbnail = parentElement.children[1].src;
-    const price = Number(parentElement.children[2].innerText);
+  addItem(event) {
+    const { title, image, price } = event.target.attributes;
 
     const { cartItems } = this.state;
 
@@ -34,9 +32,9 @@ class App extends React.Component {
     } else {
       this.setState((prevState) => ({
         cartItems: [...prevState.cartItems, {
-          title,
-          thumbnail,
-          price,
+          title: title.value,
+          image: image.value,
+          price: Number(price.value),
           quantity: 1,
         }],
       }));
@@ -56,7 +54,12 @@ class App extends React.Component {
               render={ () => <ShoppingCartPage cartItems={ cartItems } /> }
             />
             <Route exact path="/" render={ () => <Home addItem={ this.addItem } /> } />
-            <Route exact path="/productDetails/:id" component={ ProductDetails } />
+            <Route
+              exact
+              path="/productDetails/:id"
+              render={ (props) => (
+                <ProductDetails { ...props } addItem={ this.addItem } />) }
+            />
             <Route exact path="/checkout" component={ Checkout } />
           </Switch>
         </BrowserRouter>

@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.card-product {
+  align-items: center;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 60vw;
+}
+
+.card-product div > img {
+  width: 100px;
+}
+
+.div-card-qnt {
+  display: flex;
+  justify-content: space-around;
+  min-width: 6vw;
+}
+
+.div-card-qnt button {
+  width: 2vw;
+}
+
+.div-card-name {
+  max-width: 25vw;
+}
+
+.div-card-price {
+  margin-left: 2vw;
+}

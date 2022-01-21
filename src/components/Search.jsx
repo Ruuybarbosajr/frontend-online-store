@@ -1,6 +1,5 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import '../styles/Search.css';
 
@@ -16,24 +15,17 @@ class Search extends React.Component {
         </span>
       );
     }
+
     return (
       productList.map((product) => (
-        <Link
-          to={ `/productDetails/${product.id}` }
-          data-testid="product-detail-link"
+        <ProductCard
           key={ product.id }
           title={ product.title }
           image={ product.thumbnail }
           price={ product.price }
-        >
-          <ProductCard
-            key={ product.id }
-            title={ product.title }
-            image={ product.thumbnail }
-            price={ product.price }
-            addItem={ addItem }
-          />
-        </Link>
+          addItem={ addItem }
+          id={ product.id }
+        />
       ))
     );
   }
@@ -75,6 +67,7 @@ Search.propTypes = {
   searchingForProducts: propTypes.func.isRequired,
   createList: propTypes.bool.isRequired,
   handleChange: propTypes.func.isRequired,
+  addItem: propTypes.func.isRequired,
   productList: propTypes.arrayOf(
     propTypes.object,
   ).isRequired,

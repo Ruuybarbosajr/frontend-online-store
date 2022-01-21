@@ -23,8 +23,13 @@ class Search extends React.Component {
           title={ product.title }
           image={ product.thumbnail }
           price={ product.price }
+          maxQuantity={ product.available_quantity }
           addItem={ addItem }
           id={ product.id }
+          freeShipping={
+            product.shipping
+            && product.shipping.free_shipping
+          }
         />
       ))
     );

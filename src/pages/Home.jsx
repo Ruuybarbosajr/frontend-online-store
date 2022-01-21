@@ -65,6 +65,7 @@ class Home extends React.Component {
     const { addItem } = this.props;
     return (
       <div>
+        <Header />
         <div className="home">
           <section>
             Categorias
@@ -78,7 +79,6 @@ class Home extends React.Component {
               />)) }
           </section>
           <section className="search-block">
-            <Header />
             <Search
               handleChange={ this.handleChange }
               searchingForProducts={ this.searchingForProducts }

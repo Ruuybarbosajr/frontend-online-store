@@ -1,0 +1,14 @@
+.email {
+  display: block;
+  margin-right: 20px;
+}
+
+.radios {
+  display: none;
+}
+
+.star {
+  cursor: pointer;
+  margin-right: 10px;
+  transition: color 200ms;
+}

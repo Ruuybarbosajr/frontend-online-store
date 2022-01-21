@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import '../styles/ProductDetails.css';
+import RatingForm from '../components/RatingForm';
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -28,25 +29,29 @@ class ProductDetails extends React.Component {
     return (
       <div>
         <Header />
-        <h1
-          data-testid="product-detail-name"
-        >
-          { `${objProduct.title} - R$ ${objProduct.base_price}` }
-        </h1>
-        <img src={ objProduct.thumbnail } alt={ objProduct.title } />
-        <ul>
-          <li>{ `Quantidade em Estoque: ${objProduct.available_quantity}` }</li>
-        </ul>
-        <button
-          type="button"
-          data-testid="product-detail-add-to-cart"
-          onClick={ addItem }
-          title={ objProduct.title }
-          image={ objProduct.thumbnail }
-          price={ objProduct.base_price }
-        >
-          Adicionar
-        </button>
+        <main>
+
+          <h1
+            data-testid="product-detail-name"
+          >
+            { `${objProduct.title} - R$ ${objProduct.base_price}` }
+          </h1>
+          <img src={ objProduct.thumbnail } alt={ objProduct.title } />
+          <ul>
+            <li>{ `Quantidade em Estoque: ${objProduct.available_quantity}` }</li>
+          </ul>
+          <button
+            type="button"
+            data-testid="product-detail-add-to-cart"
+            onClick={ addItem }
+            title={ objProduct.title }
+            image={ objProduct.thumbnail }
+            price={ objProduct.base_price }
+          >
+            Adicionar
+          </button>
+          <RatingForm />
+        </main>
       </div>
     );
   }

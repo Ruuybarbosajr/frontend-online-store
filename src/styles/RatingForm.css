@@ -1,0 +1,17 @@
+#email-container {
+    display: block;
+    margin-right: 20px;
+}
+
+.star {
+    margin-right: 10px;
+}
+
+.radios {
+    display: none;
+}
+
+.star2 {
+    cursor: pointer;
+    transition: color 200ms;
+}

@@ -41,10 +41,10 @@ class RatingForm extends React.Component {
       comentaryList: [...prevState.comentaryList, savedComentary] }));
   }
 
-    componentDidUpdate = () => {
-      const { comentaryList } = this.state;
-      this.sendingListToStorage(comentaryList);
-    }
+  componentDidUpdate = () => {
+    const { comentaryList } = this.state;
+    this.sendingListToStorage(comentaryList);
+  }
 
   sendingListToStorage = (coment) => {
     const { pageId } = this.props;

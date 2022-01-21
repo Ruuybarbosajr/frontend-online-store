@@ -73,17 +73,15 @@ class RatingForm extends React.Component {
               onChange={ this.handleChange }
             />
           </label>
-          <label htmlFor="cometary">
-            <textarea
-              id="comentary"
-              data-testid="product-detail-evaluation"
-              cols="30"
-              rows="10"
-              name="comentary"
-              value={ comentary }
-              onChange={ this.handleChange }
-            />
-          </label>
+          <textarea
+            data-testid="product-detail-evaluation"
+            id="comentary"
+            cols="30"
+            rows="10"
+            name="comentary"
+            value={ comentary }
+            onChange={ this.handleChange }
+          />
           <div>
             {/* Escrevi o código abaixo usando este tutorial: https://www.youtube.com/watch?v=eDw46GYAIDQ */}
             {[...Array(NUMBER_OF_STARS)].map((_star, index) => {
@@ -97,7 +95,7 @@ class RatingForm extends React.Component {
                     name="rating"
                     value={ ratingValue }
                     onChange={ this.handleChange }
-                    data-testid={ `${index}-rating` }
+                    data-testid={ `${index + 1}-rating` }
                   />
                   <FaStar
                     className="star"
@@ -128,9 +126,8 @@ class RatingForm extends React.Component {
               :&ensp;
               { coment.rating }
             </p>
-
             { [...Array(coment.rating)].map((_star, index) => (
-              <FaStar key={ `${index}-printed-rating` } color="#ffc107" />)) }
+              <FaStar key={ `${index + 1}-printed-rating` } color="#ffc107" />)) }
           </div>
         ))}
       </div>

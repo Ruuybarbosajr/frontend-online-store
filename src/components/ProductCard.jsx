@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 class ProductCard extends React.Component {
   render() {
-    const { title, image, price, addItem, id, freeShipping } = this.props;
+    const { title, image, price, addItem, id, freeShipping, maxQuantity } = this.props;
     return (
       <div
         data-testid="product"
@@ -32,6 +32,7 @@ class ProductCard extends React.Component {
           title={ title }
           image={ image }
           price={ price }
+          maxquantity={ maxQuantity }
         >
           Comprar
         </button>
@@ -41,6 +42,7 @@ class ProductCard extends React.Component {
 }
 
 ProductCard.propTypes = {
+  maxQuantity: PropType.number.isRequired,
   title: PropType.string.isRequired,
   image: PropType.string.isRequired,
   price: PropType.number.isRequired,

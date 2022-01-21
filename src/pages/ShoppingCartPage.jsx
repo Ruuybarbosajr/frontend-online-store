@@ -89,6 +89,7 @@ export default class ShoppingCartPage extends React.Component {
                   title={ producting.title }
                   price={ producting.price }
                   qntProduct={ producting.quantity }
+                  maxQuantity={ producting.maxQuantity }
                 />
               ))) }
             </section>

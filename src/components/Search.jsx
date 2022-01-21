@@ -26,6 +26,10 @@ class Search extends React.Component {
           maxQuantity={ product.available_quantity }
           addItem={ addItem }
           id={ product.id }
+          freeShipping={
+            product.shipping
+            && product.shipping.free_shipping
+          }
         />
       ))
     );

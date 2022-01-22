@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import ProductCardInCart from '../components/ProductCardInCart';
 import ShoppingCartIcon from '../shopping-cart.png';
 
@@ -45,6 +46,7 @@ export default class ShoppingCartPage extends React.Component {
     this.state = {
       isCartEmpty: false,
       shoppingCart: cartItems,
+      redirect: false,
     };
   }
 
@@ -59,10 +61,19 @@ export default class ShoppingCartPage extends React.Component {
     }
   }
 
+  redirectToCheckout = () => {
+    this.setState({ redirect: true });
+  };
+
   render() {
-    const { shoppingCart, isCartEmpty } = this.state;
+    const {
+      shoppingCart,
+      isCartEmpty,
+      redirect,
+    } = this.state;
     return (
       <div>
+        {redirect && <Redirect to="/checkout" />}
         { isCartEmpty ? (
           <h3
             data-testid="shopping-cart-empty-message"
@@ -93,6 +104,13 @@ export default class ShoppingCartPage extends React.Component {
                 />
               ))) }
             </section>
+            <button
+              type="button"
+              data-testid="checkout-products"
+              onClick={ this.redirectToCheckout }
+            >
+              Finalizar Compra
+            </button>
           </section>
         ) }
       </div>

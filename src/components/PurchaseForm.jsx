@@ -17,9 +17,8 @@ export default class PurchaseForm extends React.Component {
           />
           <input
             data-testid="checkout-cpf"
-            type="number"
+            type="text"
             placeholder="CPF"
-            maxLength="11"
             required
           />
           <input
@@ -36,7 +35,7 @@ export default class PurchaseForm extends React.Component {
           />
           <input
             data-testid="checkout-cep"
-            type="number"
+            type="text"
             placeholder="CEP"
             required
           />

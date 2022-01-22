@@ -60,7 +60,15 @@ class App extends React.Component {
               render={ (props) => (
                 <ProductDetails { ...props } addItem={ this.addItem } />) }
             />
-            <Route exact path="/checkout" component={ Checkout } />
+            <Route
+              exact
+              path="/checkout"
+              // render={ () => (
+              //   <Checkout cartItems={ cartItems } />
+              // ) }
+            >
+              <Checkout cartItems={ cartItems } />
+            </Route>
           </Switch>
         </BrowserRouter>
       </div>

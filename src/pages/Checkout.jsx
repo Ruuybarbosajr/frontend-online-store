@@ -1,19 +1,51 @@
 import React from 'react';
 import '../styles/Checkout.css';
+import propTypes from 'prop-types';
 import CartItem from '../components/CartItem';
 import PurchaseForm from '../components/PurchaseForm';
 
 class Checkout extends React.Component {
+  constructor(props) {
+    super(props);
+    const { cartItems } = props;
+    this.state = {
+      shoppingCart: cartItems,
+      sum: 0,
+    };
+    this.reassignSum = this.reassignSum.bind(this);
+  }
+
+  componentDidMount() {
+    this.reassignSum();
+  }
+
+  reassignSum() {
+    const {
+      shoppingCart,
+    } = this.state;
+    shoppingCart.map((product) => (
+      this.setState({ sum: (product.price * product.quantity) })));
+  }
+
   render() {
+    const {
+      shoppingCart,
+      sum,
+    } = this.state;
+
     return (
       <div>
         <section>
-          <CartItem
-            productImage="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-max-graphite-select?wid=470&hei=556&fmt=jpeg&qlt=95&.v=1631652956000"
-            productName="iPhone 11"
-            productPrice="9999"
-          />
-          <p>Total: R$9999</p>
+          { shoppingCart.map((product) => (
+            <CartItem
+              key={ product.productId }
+              productImage={ product.image }
+              productName={ product.title }
+              productPrice={ product.price }
+              productQuantity={ product.quantity }
+            />
+          ))}
+          <p>{`Total: ${sum}`}</p>
         </section>
         <PurchaseForm />
       </div>
@@ -22,3 +54,7 @@ class Checkout extends React.Component {
 }
 
 export default Checkout;
+
+Checkout.propTypes = {
+  cartItems: propTypes.arrayOf(propTypes.object),
+}.isRequired;

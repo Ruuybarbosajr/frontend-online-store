@@ -9,6 +9,7 @@ class ProductDetails extends React.Component {
     super();
     this.state = {
       objProduct: '',
+      isFreeShipping: '',
     };
   }
 
@@ -20,12 +21,12 @@ class ProductDetails extends React.Component {
     const { match: { params: { id } } } = this.props;
     const response = await fetch(`https://api.mercadolibre.com/items/${id}`);
     const data = await response.json();
-    this.setState({ objProduct: data });
+    this.setState({ objProduct: data, isFreeShipping: data.shipping.free_shipping });
   }
 
   render() {
-    const { objProduct } = this.state;
-    const { cartItems, addItem, match: { params: { id } } } = this.props;
+    const { objProduct, isFreeShipping } = this.state;
+    const { addItem, match: { params: { id } } } = this.props;
     return (
       <div>
         <Header cartItems={ cartItems } />
@@ -37,6 +38,7 @@ class ProductDetails extends React.Component {
             { `${objProduct.title} - R$ ${objProduct.base_price}` }
           </h1>
           <img src={ objProduct.thumbnail } alt={ objProduct.title } />
+          {isFreeShipping && <h2 data-testid="free-shipping">Frete Grátis</h2>}
           <ul>
             <li>{ `Quantidade em Estoque: ${objProduct.available_quantity}` }</li>
           </ul>
@@ -47,6 +49,7 @@ class ProductDetails extends React.Component {
             title={ objProduct.title }
             image={ objProduct.thumbnail }
             price={ objProduct.base_price }
+            maxQuantity={ objProduct.available_quantity }
           >
             Adicionar
           </button>

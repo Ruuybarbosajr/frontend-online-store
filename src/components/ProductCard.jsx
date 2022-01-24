@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 class ProductCard extends React.Component {
   render() {
-    const { title, image, price, addItem, id } = this.props;
+    const { title, image, price, addItem, id, freeShipping, maxQuantity } = this.props;
     return (
       <div
         data-testid="product"
@@ -24,6 +24,7 @@ class ProductCard extends React.Component {
           />
           <span>{ price }</span>
         </Link>
+        { freeShipping && <p data-testid="free-shipping">Frete Grátis</p> }
         <button
           type="button"
           data-testid="product-add-to-cart"
@@ -31,6 +32,7 @@ class ProductCard extends React.Component {
           title={ title }
           image={ image }
           price={ price }
+          maxquantity={ maxQuantity }
         >
           Comprar
         </button>
@@ -40,11 +42,13 @@ class ProductCard extends React.Component {
 }
 
 ProductCard.propTypes = {
+  maxQuantity: PropType.number.isRequired,
   title: PropType.string.isRequired,
   image: PropType.string.isRequired,
   price: PropType.number.isRequired,
   addItem: PropType.func.isRequired,
   id: PropType.string.isRequired,
+  freeShipping: PropType.bool.isRequired,
 };
 
 export default ProductCard;

@@ -35,7 +35,8 @@ class App extends React.Component {
   };
 
   addItem(event) {
-    const { title, image, price } = event.target.attributes;
+    const { title, image, price, maxQuantity } = event.target.attributes;
+
     const { cartItems } = this.state;
 
     if (
@@ -51,6 +52,7 @@ class App extends React.Component {
           image: image.value,
           price: Number(price.value),
           quantity: 1,
+          maxQuantity: maxQuantity.value,
         }],
       }));
     }
@@ -92,7 +94,15 @@ class App extends React.Component {
                   cartItems={ cartItems }
                 />) }
             />
-            <Route exact path="/checkout" component={ Checkout } />
+            <Route
+              exact
+              path="/checkout"
+              // render={ () => (
+              //   <Checkout cartItems={ cartItems } />
+              // ) }
+            >
+              <Checkout cartItems={ cartItems } />
+            </Route>
           </Switch>
         </BrowserRouter>
       </div>

@@ -26,7 +26,7 @@ class ProductDetails extends React.Component {
 
   render() {
     const { objProduct, isFreeShipping } = this.state;
-    const { addItem, match: { params: { id } } } = this.props;
+    const { addItem, cartItems, match: { params: { id } } } = this.props;
     return (
       <div>
         <Header cartItems={ cartItems } />

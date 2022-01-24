@@ -57,74 +57,72 @@ export default class ShoppingCartPage extends React.Component {
       this.setState({ isCartEmpty: true });
     }
   }
-  
+
    redirectToCheckout = () => {
-    this.setState({ redirect: true });
-  };
+     this.setState({ redirect: true });
+   };
 
+   render() {
+     const {
+       isCartEmpty,
+       redirect,
+     } = this.state;
+     const {
+       handleClickSum,
+       handleClickSubtraction,
+       cartItems,
+     } = this.props;
 
-  render() {
-    const {
-      shoppingCart,
-      isCartEmpty,
-      redirect,
-    } = this.state;
-    const {
-      handleClickSum,
-      handleClickSubtraction,
-      cartItems,
-    } = this.props;
+     return (
+       <div>
+         <Header cartItems={ cartItems } />
+         {redirect && <Redirect to="/checkout" />}
+         { isCartEmpty ? (
+           <h3
+             data-testid="shopping-cart-empty-message"
+           >
+             Seu carrinho está vazio
+           </h3>
+         ) : (
+           <section>
+             <section>
+               <img
+                 className="shopping-cart-icon"
+                 src={ ShoppingCartIcon }
+                 alt="shopping cart"
+               />
+               <h3>
+                 Carrinho de Compras
+               </h3>
+             </section>
+             <section>
+               { cartItems.map(((producting, index) => (
+                 <ProductCardInCart
+                   key={ index }
+                   thumbnail={ producting.image }
+                   title={ producting.title }
+                   price={ producting.price }
+                   qntProduct={ producting.quantity }
 
-    return (
-      <div>
-      <Header cartItems={ cartItems } />
-        {redirect && <Redirect to="/checkout" />}
-        { isCartEmpty ? (
-          <h3
-            data-testid="shopping-cart-empty-message"
-          >
-            Seu carrinho está vazio
-          </h3>
-        ) : (
-          <section>
-            <section>
-              <img
-                className="shopping-cart-icon"
-                src={ ShoppingCartIcon }
-                alt="shopping cart"
-              />
-              <h3>
-                Carrinho de Compras
-              </h3>
-            </section>
-            <section>
-              { cartItems.map(((producting, index) => (
-                <ProductCardInCart
-                  key={ index }
-                  thumbnail={ producting.image }
-                  title={ producting.title }
-                  price={ producting.price }
-                  qntProduct={ producting.quantity }
-
-                  handleClickSubtraction={ handleClickSubtraction }
-                  handleClickSum={ handleClickSum }
-                  cartItems={ cartItems }
-                  maxQuantity={ producting.maxQuantity }
-                />
-              ))) }
-            </section>
-            <button
-              type="button"
-              data-testid="checkout-products"
-              onClick={ this.redirectToCheckout }
-            >
-              Finalizar Compra
-            </button>
-          </section>
-        ) }
-      </div>
-    );
-  }
+                   handleClickSubtraction={ handleClickSubtraction }
+                   handleClickSum={ handleClickSum }
+                   cartItems={ cartItems }
+                   maxQuantity={ producting.maxQuantity }
+                 />
+               ))) }
+             </section>
+             <button
+               type="button"
+               data-testid="checkout-products"
+               onClick={ this.redirectToCheckout }
+             >
+               Finalizar Compra
+             </button>
+           </section>
+         ) }
+       </div>
+     );
+   }
 }
 
 ShoppingCartPage.propTypes = {

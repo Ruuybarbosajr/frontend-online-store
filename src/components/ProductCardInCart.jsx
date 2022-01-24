@@ -4,19 +4,24 @@ import '../styles/ProductCardInCart.css';
 
 export default class ProductCardInCart extends Component {
  
-  disableBtn() {
-    this.checkPrice();
-    const { qntProductState } = this.state;
-    const { maxQuantity } = this.props;
-    if (Number(qntProductState) === Number(maxQuantity)) {
-      this.setState({ btnSumDisable: true });
-    }
-  }
+  // disableBtn() {
+  //   this.checkPrice();
+  //   const { qntProductState } = this.state;
+  //   const { maxQuantity } = this.props;
+  //   if (Number(qntProductState) === Number(maxQuantity)) {
+  //     this.setState({ btnSumDisable: true });
+  //   }
+  // }
 
   render() {
-    const { thumbnail, title } = this.props;
-    const { qntProductState, totalPrice, btnSumDisable } = this.state;
-
+    const {
+      thumbnail,
+      title,
+      handleClickSubtraction,
+      handleClickSum,
+      price,
+      qntProduct,
+    } = this.props;
     return (
       <section className="card-product">
         <div>
@@ -40,10 +45,9 @@ export default class ProductCardInCart extends Component {
           <button
             type="button"
             data-testid="product-increase-quantity"
-
             title={ title }
             onClick={ handleClickSum }
-            disabled={ btnSumDisable }
+            // disabled={ btnSumDisable }
           >
             +
           </button>

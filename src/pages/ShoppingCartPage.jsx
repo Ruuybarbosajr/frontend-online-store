@@ -103,10 +103,11 @@ export default class ShoppingCartPage extends React.Component {
                    title={ producting.title }
                    price={ producting.price }
                    qntProduct={ producting.quantity }
-
                    handleClickSubtraction={ handleClickSubtraction }
                    handleClickSum={ handleClickSum }
                    cartItems={ cartItems }
+                   btnSumDisable={ producting.btnSumDisable }
+                   btnSubDisable={ producting.btnSubDisable }
                    maxQuantity={ producting.maxQuantity }
                  />
                ))) }

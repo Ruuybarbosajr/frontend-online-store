@@ -3,16 +3,6 @@ import PropTypes from 'prop-types';
 import '../styles/ProductCardInCart.css';
 
 export default class ProductCardInCart extends Component {
- 
-  // disableBtn() {
-  //   this.checkPrice();
-  //   const { qntProductState } = this.state;
-  //   const { maxQuantity } = this.props;
-  //   if (Number(qntProductState) === Number(maxQuantity)) {
-  //     this.setState({ btnSumDisable: true });
-  //   }
-  // }
-
   render() {
     const {
       thumbnail,
@@ -21,6 +11,8 @@ export default class ProductCardInCart extends Component {
       handleClickSum,
       price,
       qntProduct,
+      btnSumDisable,
+      btnSubDisable,
     } = this.props;
     return (
       <section className="card-product">
@@ -38,6 +30,7 @@ export default class ProductCardInCart extends Component {
             data-testid="product-decrease-quantity"
             title={ title }
             onClick={ handleClickSubtraction }
+            disabled={ btnSubDisable }
           >
             -
           </button>
@@ -47,7 +40,7 @@ export default class ProductCardInCart extends Component {
             data-testid="product-increase-quantity"
             title={ title }
             onClick={ handleClickSum }
-            // disabled={ btnSumDisable }
+            disabled={ btnSumDisable }
           >
             +
           </button>
@@ -66,7 +59,8 @@ export default class ProductCardInCart extends Component {
 ProductCardInCart.propTypes = {
   handleClickSubtraction: PropTypes.func.isRequired,
   handleClickSum: PropTypes.func.isRequired,
-  maxQuantity: PropTypes.string.isRequired,
+  btnSumDisable: PropTypes.bool.isRequired,
+  btnSubDisable: PropTypes.bool.isRequired,
   qntProduct: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,

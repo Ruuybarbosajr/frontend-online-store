@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import ProductCardInCart from '../components/ProductCardInCart';
 import ShoppingCartIcon from '../shopping-cart.png';
+import Header from '../components/Header';
 
 // const product = [
 //   {
@@ -38,14 +39,10 @@ import ShoppingCartIcon from '../shopping-cart.png';
 // ];
 
 export default class ShoppingCartPage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    const { cartItems } = props;
-
+  constructor() {
+    super();
     this.state = {
       isCartEmpty: false,
-      shoppingCart: cartItems,
       redirect: false,
     };
   }
@@ -55,15 +52,16 @@ export default class ShoppingCartPage extends React.Component {
   }
 
   checkCart = () => {
-    const { shoppingCart } = this.state;
-    if (shoppingCart.length === 0) {
+    const { cartItems } = this.props;
+    if (cartItems.length === 0) {
       this.setState({ isCartEmpty: true });
     }
   }
-
-  redirectToCheckout = () => {
+  
+   redirectToCheckout = () => {
     this.setState({ redirect: true });
   };
+
 
   render() {
     const {
@@ -71,8 +69,15 @@ export default class ShoppingCartPage extends React.Component {
       isCartEmpty,
       redirect,
     } = this.state;
+    const {
+      handleClickSum,
+      handleClickSubtraction,
+      cartItems,
+    } = this.props;
+
     return (
       <div>
+      <Header cartItems={ cartItems } />
         {redirect && <Redirect to="/checkout" />}
         { isCartEmpty ? (
           <h3
@@ -93,13 +98,17 @@ export default class ShoppingCartPage extends React.Component {
               </h3>
             </section>
             <section>
-              { shoppingCart.map(((producting, index) => (
+              { cartItems.map(((producting, index) => (
                 <ProductCardInCart
                   key={ index }
                   thumbnail={ producting.image }
                   title={ producting.title }
                   price={ producting.price }
                   qntProduct={ producting.quantity }
+
+                  handleClickSubtraction={ handleClickSubtraction }
+                  handleClickSum={ handleClickSum }
+                  cartItems={ cartItems }
                   maxQuantity={ producting.maxQuantity }
                 />
               ))) }
@@ -120,4 +129,6 @@ export default class ShoppingCartPage extends React.Component {
 
 ShoppingCartPage.propTypes = {
   cartItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleClickSubtraction: PropTypes.func.isRequired,
+  handleClickSum: PropTypes.func.isRequired,
 };

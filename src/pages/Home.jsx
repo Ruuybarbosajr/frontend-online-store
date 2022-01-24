@@ -62,10 +62,10 @@ class Home extends React.Component {
       createList,
       productList,
     } = this.state;
-    const { addItem } = this.props;
+    const { addItem, cartItems } = this.props;
     return (
       <div>
-        <Header />
+        <Header cartItems={ cartItems } />
         <div className="home">
           <section>
             Categorias
@@ -97,6 +97,7 @@ class Home extends React.Component {
 
 Home.propTypes = {
   addItem: propTypes.func.isRequired,
+  cartItems: propTypes.arrayOf(propTypes.object).isRequired,
 };
 
 export default Home;

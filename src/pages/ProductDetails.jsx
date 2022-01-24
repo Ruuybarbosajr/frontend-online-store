@@ -29,7 +29,7 @@ class ProductDetails extends React.Component {
     const { addItem, match: { params: { id } } } = this.props;
     return (
       <div>
-        <Header />
+        <Header cartItems={ cartItems } />
         <main>
 
           <h1
@@ -67,6 +67,7 @@ ProductDetails.propTypes = {
     }),
   }).isRequired,
   addItem: PropTypes.func.isRequired,
+  cartItems: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ProductDetails;

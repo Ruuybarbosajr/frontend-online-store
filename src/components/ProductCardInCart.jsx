@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import '../styles/ProductCardInCart.css';
 
 export default class ProductCardInCart extends Component {
- 
   // disableBtn() {
   //   this.checkPrice();
   //   const { qntProductState } = this.state;
@@ -66,7 +65,6 @@ export default class ProductCardInCart extends Component {
 ProductCardInCart.propTypes = {
   handleClickSubtraction: PropTypes.func.isRequired,
   handleClickSum: PropTypes.func.isRequired,
-  maxQuantity: PropTypes.string.isRequired,
   qntProduct: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,

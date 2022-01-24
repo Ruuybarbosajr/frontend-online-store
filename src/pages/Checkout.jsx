@@ -5,49 +5,21 @@ import CartItem from '../components/CartItem';
 import PurchaseForm from '../components/PurchaseForm';
 
 class Checkout extends React.Component {
-  constructor(props) {
-    super(props);
-    const { cartItems } = props;
-    this.state = {
-      shoppingCart: cartItems,
-      sum: 0,
-    };
-    this.reassignSum = this.reassignSum.bind(this);
-  }
-
-  componentDidMount() {
-    this.reassignSum();
-  }
-
-  reassignSum() {
-    const {
-      shoppingCart,
-    } = this.state;
-    shoppingCart.map((product) => (
-      this.setState(
-        (prevState) => ({ sum: prevState.sum + (product.price * product.quantity) }),
-      )));
-  }
-
   render() {
-    const {
-      shoppingCart,
-      sum,
-    } = this.state;
-
+    const { sumProducts, cartItems } = this.props;
     return (
       <div>
         <section>
-          { shoppingCart.map((product) => (
+          { cartItems.map((product) => (
             <CartItem
-              key={ product.productId }
+              key={ product.title }
               productImage={ product.image }
               productName={ product.title }
               productPrice={ product.price }
               productQuantity={ product.quantity }
             />
           ))}
-          <p>{`Total: ${sum}`}</p>
+          <p>{`Total: ${sumProducts}`}</p>
         </section>
         <PurchaseForm />
       </div>

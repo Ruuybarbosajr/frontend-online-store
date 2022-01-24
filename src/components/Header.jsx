@@ -16,8 +16,7 @@ class Header extends React.Component {
             data-testid="shopping-cart-size"
             className="shopping-cart-size"
           >
-            {cartItems.length !== 0 && cartItems
-              .reduce((result, iten) => result + iten.quantity, 0)}
+            {cartItems.reduce((result, iten) => result + iten.quantity, 0)}
           </div>
         </div>
         <CartIcon />

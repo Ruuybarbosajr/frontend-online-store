@@ -11,10 +11,19 @@ class App extends React.Component {
     super();
 
     this.state = {
-      cartItems: [],
+      cartItems: JSON.parse(localStorage.getItem('cartItems')) || [],
     };
 
     this.addItem = this.addItem.bind(this);
+  }
+
+  componentDidUpdate = () => {
+    this.safeInLocalStorage();
+  }
+
+  safeInLocalStorage = () => {
+    const { cartItems } = this.state;
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }
 
   handleClickSubtraction = (event) => {
@@ -69,7 +78,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { cartItems } = this.state;
+    const { cartItems, reduce } = this.state;
 
     return (
       <div className="App">
@@ -83,6 +92,7 @@ class App extends React.Component {
                   handleClickSubtraction={ this.handleClickSubtraction }
                   handleClickSum={ this.handleClickSum }
                   cartItems={ cartItems }
+                  reduce={ reduce }
                 />) }
             />
             <Route

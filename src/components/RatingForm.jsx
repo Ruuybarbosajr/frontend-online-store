@@ -87,16 +87,18 @@ class RatingForm extends React.Component {
             {[...Array(NUMBER_OF_STARS)].map((_star, index) => {
               const ratingValue = index + 1;
               return (
-                // eslint-disable-next-line jsx-a11y/label-has-associated-control
+              // eslint-disable-next-line jsx-a11y/label-has-associated-control
 
-                <label htmlFor={ `radioRAting${ratingValue}` } key={ `${index}-of-stars` }>
+                <label
+                  htmlFor={ `radioRAting${ratingValue}` }
+                  key={ `${index}-of-stars` }
+                >
 
                   <input
                     id={ `radioRAting${ratingValue}` }
                     className="radios"
                     type="radio"
                     name="rating"
-                    id="radioRating"
                     value={ ratingValue }
                     onChange={ this.handleChange }
                     data-testid={ `${index + 1}-rating` }

@@ -24,7 +24,9 @@ class Checkout extends React.Component {
       shoppingCart,
     } = this.state;
     shoppingCart.map((product) => (
-      this.setState({ sum: (product.price * product.quantity) })));
+      this.setState(
+        (prevState) => ({ sum: prevState.sum + (product.price * product.quantity) }),
+      )));
   }
 
   render() {

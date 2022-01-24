@@ -3,40 +3,15 @@ import PropTypes from 'prop-types';
 import '../styles/ProductCardInCart.css';
 
 export default class ProductCardInCart extends Component {
-  constructor(props) {
-    super(props);
-
-    const { qntProduct, price } = props;
-
-    this.state = {
-      qntProductState: qntProduct,
-      totalPrice: qntProduct * price,
-    };
-  }
-
-  checkPrice = () => {
-    const { price } = this.props;
-    const { qntProductState } = this.state;
-    this.setState({ totalPrice: qntProductState * price });
-  }
-
-  handleClickSubtraction = () => {
-    this.setState((prevState) => (
-      {
-        qntProductState: prevState.qntProductState === 0
-          ? 0
-          : prevState.qntProductState - 1,
-      }), () => this.checkPrice());
-  };
-
-  handleClickSum = () => {
-    this.setState((prevState) => (
-      { qntProductState: prevState.qntProductState + 1 }), () => this.checkPrice());
-  };
-
   render() {
-    const { thumbnail, title } = this.props;
-    const { qntProductState, totalPrice } = this.state;
+    const {
+      thumbnail,
+      title,
+      qntProduct,
+      handleClickSubtraction,
+      handleClickSum,
+      price,
+    } = this.props;
 
     return (
       <section className="card-product">
@@ -52,15 +27,17 @@ export default class ProductCardInCart extends Component {
           <button
             type="button"
             data-testid="product-decrease-quantity"
-            onClick={ this.handleClickSubtraction }
+            title={ title }
+            onClick={ handleClickSubtraction }
           >
             -
           </button>
-          <p data-testid="shopping-cart-product-quantity">{ qntProductState }</p>
+          <p data-testid="shopping-cart-product-quantity">{ qntProduct }</p>
           <button
             type="button"
             data-testid="product-increase-quantity"
-            onClick={ this.handleClickSum }
+            title={ title }
+            onClick={ handleClickSum }
           >
             +
           </button>
@@ -68,7 +45,7 @@ export default class ProductCardInCart extends Component {
         <div className="div-card-price">
           <p>
             R$
-            { totalPrice }
+            { qntProduct * price }
           </p>
         </div>
       </section>
@@ -77,6 +54,8 @@ export default class ProductCardInCart extends Component {
 }
 
 ProductCardInCart.propTypes = {
+  handleClickSubtraction: PropTypes.func.isRequired,
+  handleClickSum: PropTypes.func.isRequired,
   qntProduct: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,

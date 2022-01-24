@@ -25,10 +25,10 @@ class ProductDetails extends React.Component {
 
   render() {
     const { objProduct } = this.state;
-    const { addItem, match: { params: { id } } } = this.props;
+    const { cartItems, addItem, match: { params: { id } } } = this.props;
     return (
       <div>
-        <Header />
+        <Header cartItems={ cartItems } />
         <main>
 
           <h1
@@ -64,6 +64,7 @@ ProductDetails.propTypes = {
     }),
   }).isRequired,
   addItem: PropTypes.func.isRequired,
+  cartItems: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ProductDetails;

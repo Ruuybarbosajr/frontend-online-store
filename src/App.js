@@ -17,17 +17,32 @@ class App extends React.Component {
     this.addItem = this.addItem.bind(this);
   }
 
+  handleClickSubtraction = (event) => {
+    const { title } = event.target.attributes;
+    const { cartItems } = this.state;
+    const item = cartItems.find((itemCart) => itemCart.title === title.value);
+    console.log(item);
+    item.quantity -= 1;
+    this.setState({ cartItems });
+  };
+
+  handleClickSum = (event) => {
+    const { title } = event.target.attributes;
+    const { cartItems } = this.state;
+    const item = cartItems.find((itemCart) => itemCart.title === title.value);
+    item.quantity += 1;
+    this.setState({ cartItems });
+  };
+
   addItem(event) {
     const { title, image, price } = event.target.attributes;
-
     const { cartItems } = this.state;
 
     if (
-      cartItems.some((item) => item.title === title)
+      cartItems.some((item) => item.title === title.value)
     ) {
-      const item = cartItems.find((itemCart) => itemCart.title === title);
+      const item = cartItems.find((itemCart) => itemCart.title === title.value);
       item.quantity += 1;
-
       this.setState({ cartItems });
     } else {
       this.setState((prevState) => ({
@@ -51,14 +66,31 @@ class App extends React.Component {
             <Route
               exact
               path="/shopping-cart"
-              render={ () => <ShoppingCartPage cartItems={ cartItems } /> }
+              render={ () => (
+                <ShoppingCartPage
+                  handleClickSubtraction={ this.handleClickSubtraction }
+                  handleClickSum={ this.handleClickSum }
+                  cartItems={ cartItems }
+                />) }
             />
-            <Route exact path="/" render={ () => <Home addItem={ this.addItem } /> } />
+            <Route
+              exact
+              path="/"
+              render={ () => (
+                <Home
+                  addItem={ this.addItem }
+                  cartItems={ cartItems }
+                />) }
+            />
             <Route
               exact
               path="/productDetails/:id"
               render={ (props) => (
-                <ProductDetails { ...props } addItem={ this.addItem } />) }
+                <ProductDetails
+                  { ...props }
+                  addItem={ this.addItem }
+                  cartItems={ cartItems }
+                />) }
             />
             <Route exact path="/checkout" component={ Checkout } />
           </Switch>

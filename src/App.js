@@ -30,8 +30,11 @@ class App extends React.Component {
     const { title } = event.target.attributes;
     const { cartItems } = this.state;
     const item = cartItems.find((itemCart) => itemCart.title === title.value);
-    console.log(item);
     item.quantity -= 1;
+    item.btnSumDisable = false;
+    if (item.quantity < 1) {
+      item.btnSubDisable = true;
+    }
     this.setState({ cartItems });
   };
 
@@ -40,6 +43,11 @@ class App extends React.Component {
     const { cartItems } = this.state;
     const item = cartItems.find((itemCart) => itemCart.title === title.value);
     item.quantity += 1;
+    item.btnSubDisable = false;
+    if (Number(item.quantity) === Number(item.maxQuantity)) {
+      item.btnSumDisable = true;
+    }
+
     this.setState({ cartItems });
   };
 
@@ -62,6 +70,8 @@ class App extends React.Component {
           price: Number(price.value),
           quantity: 1,
           maxQuantity: maxQuantity.value,
+          btnSumDisable: false,
+          btnSubDisable: false,
         }],
       }));
     }

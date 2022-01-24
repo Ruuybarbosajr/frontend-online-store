@@ -106,6 +106,8 @@ export default class ShoppingCartPage extends React.Component {
                    handleClickSubtraction={ handleClickSubtraction }
                    handleClickSum={ handleClickSum }
                    cartItems={ cartItems }
+                   btnSumDisable={ producting.btnSumDisable }
+                   btnSubDisable={ producting.btnSubDisable }
                    maxQuantity={ producting.maxQuantity }
                  />
                ))) }

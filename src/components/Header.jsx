@@ -1,6 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import '../styles/Header.css';
+import { Link } from 'react-router-dom';
 import CartIcon from './CartIcon';
 
 class Header extends React.Component {
@@ -8,7 +9,7 @@ class Header extends React.Component {
     const { cartItems } = this.props;
     return (
       <header className="header">
-        <h1>Frontend Online store</h1>
+        <Link to="/"><h1>Frontend Online store</h1></Link>
         <div>
 
           <div

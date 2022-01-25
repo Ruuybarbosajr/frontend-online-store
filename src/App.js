@@ -12,9 +12,15 @@ class App extends React.Component {
 
     this.state = {
       cartItems: JSON.parse(localStorage.getItem('cartItems')) || [],
+      sumProducts: 0,
     };
 
     this.addItem = this.addItem.bind(this);
+    this.reassignSum = this.reassignSum.bind(this);
+  }
+
+  componentDidMount() {
+    this.reassignSum();
   }
 
   componentDidUpdate = () => {
@@ -36,6 +42,7 @@ class App extends React.Component {
       item.btnSubDisable = true;
     }
     this.setState({ cartItems });
+    this.reassignSum();
   };
 
   handleClickSum = (event) => {
@@ -47,13 +54,19 @@ class App extends React.Component {
     if (Number(item.quantity) === Number(item.maxQuantity)) {
       item.btnSumDisable = true;
     }
-
     this.setState({ cartItems });
+    this.reassignSum();
   };
+
+  reassignSum() {
+    const { cartItems } = this.state;
+    const sumProducts = cartItems
+      .reduce((acc, product) => acc + (product.price * product.quantity), 0);
+    this.setState({ sumProducts });
+  }
 
   addItem(event) {
     const { title, image, price, maxQuantity } = event.target.attributes;
-
     const { cartItems } = this.state;
 
     if (
@@ -75,10 +88,11 @@ class App extends React.Component {
         }],
       }));
     }
+    this.reassignSum();
   }
 
   render() {
-    const { cartItems, reduce } = this.state;
+    const { cartItems, sumProducts } = this.state;
 
     return (
       <div className="App">
@@ -92,7 +106,7 @@ class App extends React.Component {
                   handleClickSubtraction={ this.handleClickSubtraction }
                   handleClickSum={ this.handleClickSum }
                   cartItems={ cartItems }
-                  reduce={ reduce }
+                  sumProducts={ sumProducts }
                 />) }
             />
             <Route
@@ -121,7 +135,7 @@ class App extends React.Component {
               //   <Checkout cartItems={ cartItems } />
               // ) }
             >
-              <Checkout cartItems={ cartItems } />
+              <Checkout cartItems={ cartItems } sumProducts={ sumProducts } />
             </Route>
           </Switch>
         </BrowserRouter>

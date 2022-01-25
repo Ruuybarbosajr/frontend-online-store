@@ -58,76 +58,79 @@ export default class ShoppingCartPage extends React.Component {
     }
   }
 
-   redirectToCheckout = () => {
-     this.setState({ redirect: true });
-   };
+  redirectToCheckout = () => {
+    this.setState({ redirect: true });
+  };
 
-   render() {
-     const {
-       isCartEmpty,
-       redirect,
-     } = this.state;
-     const {
-       handleClickSum,
-       handleClickSubtraction,
-       cartItems,
-     } = this.props;
+  render() {
+    const {
+      isCartEmpty,
+      redirect,
+    } = this.state;
+    const {
+      handleClickSum,
+      handleClickSubtraction,
+      cartItems,
+      sumProducts,
+    } = this.props;
 
-     return (
-       <div>
-         <Header cartItems={ cartItems } />
-         {redirect && <Redirect to="/checkout" />}
-         { isCartEmpty ? (
-           <h3
-             data-testid="shopping-cart-empty-message"
-           >
-             Seu carrinho está vazio
-           </h3>
-         ) : (
-           <section>
-             <section>
-               <img
-                 className="shopping-cart-icon"
-                 src={ ShoppingCartIcon }
-                 alt="shopping cart"
-               />
-               <h3>
-                 Carrinho de Compras
-               </h3>
-             </section>
-             <section>
-               { cartItems.map(((producting, index) => (
-                 <ProductCardInCart
-                   key={ index }
-                   thumbnail={ producting.image }
-                   title={ producting.title }
-                   price={ producting.price }
-                   qntProduct={ producting.quantity }
-                   handleClickSubtraction={ handleClickSubtraction }
-                   handleClickSum={ handleClickSum }
-                   cartItems={ cartItems }
-                   btnSumDisable={ producting.btnSumDisable }
-                   btnSubDisable={ producting.btnSubDisable }
-                   maxQuantity={ producting.maxQuantity }
-                 />
-               ))) }
-             </section>
-             <button
-               type="button"
-               data-testid="checkout-products"
-               onClick={ this.redirectToCheckout }
-             >
-               Finalizar Compra
-             </button>
-           </section>
-         ) }
-       </div>
-     );
-   }
+    return (
+      <div>
+        <Header cartItems={ cartItems } />
+        {redirect && <Redirect to="/checkout" />}
+        { isCartEmpty ? (
+          <h3
+            data-testid="shopping-cart-empty-message"
+          >
+            Seu carrinho está vazio
+          </h3>
+        ) : (
+          <section>
+            <section>
+              <img
+                className="shopping-cart-icon"
+                src={ ShoppingCartIcon }
+                alt="shopping cart"
+              />
+              <h3>
+                Carrinho de Compras
+              </h3>
+            </section>
+            <section>
+              { cartItems.map(((producting, index) => (
+                <ProductCardInCart
+                  key={ index }
+                  thumbnail={ producting.image }
+                  title={ producting.title }
+                  price={ producting.price }
+                  qntProduct={ producting.quantity }
+                  handleClickSubtraction={ handleClickSubtraction }
+                  handleClickSum={ handleClickSum }
+                  cartItems={ cartItems }
+                  btnSumDisable={ producting.btnSumDisable }
+                  btnSubDisable={ producting.btnSubDisable }
+                  maxQuantity={ producting.maxQuantity }
+                />
+              ))) }
+            </section>
+            <h2>{`Total: ${sumProducts}`}</h2>
+            <button
+              type="button"
+              data-testid="checkout-products"
+              onClick={ this.redirectToCheckout }
+            >
+              Finalizar Compra
+            </button>
+          </section>
+        ) }
+      </div>
+    );
+  }
 }
 
 ShoppingCartPage.propTypes = {
   cartItems: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleClickSubtraction: PropTypes.func.isRequired,
   handleClickSum: PropTypes.func.isRequired,
+  sumProducts: PropTypes.number.isRequired,
 };

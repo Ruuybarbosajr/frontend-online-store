@@ -1,0 +1,12 @@
+.display-cart-preview {
+  background-color: wheat;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  width: 500px;
+  z-index: 1;
+}
+
+.hiding-cart-preview {
+  display: none;
+}

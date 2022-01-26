@@ -9,6 +9,34 @@ const MINIMUM_VALUE_MORE_INSTALLMENTS = 150;
 const MINIMUM_AMOUNT_INSTALL = 50;
 
 class ProductCard extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+      className: 'product-card',
+    };
+  }
+
+  componentDidMount = () => {
+    this.highlightCarItems();
+  }
+
+  handleClick = (target) => {
+    const { addItem } = this.props;
+    this.setState({ className: 'highlight' });
+    addItem(target);
+  }
+
+  highlightCarItems = () => {
+    const {
+      cartItems,
+      title,
+    } = this.props;
+    if (cartItems.some((item) => item.title === title)) {
+      this.setState({ className: 'highlight' });
+    }
+  }
+
   installments = (price) => (price >= MINIMUM_VALUE_MORE_INSTALLMENTS
     ? `${MAXIMUM_NUMBER_INSTALLMENTS}x de ${(
       price / MAXIMUM_NUMBER_INSTALLMENTS
@@ -23,11 +51,20 @@ class ProductCard extends React.Component {
       currency: 'BRL',
     })} sem juros no cartão de crédito`);
 
+
   render() {
-    const { title, image, price, addItem, id, freeShipping, maxQuantity } = this.props;
+    const {
+      title,
+      image,
+      price,
+      id,
+      freeShipping,
+      maxQuantity,
+    } = this.props;
+    const { className } = this.state;
     return (
       <section className="container-product-card">
-        <div data-testid="product" className="product-card">
+        <div data-testid="product" className=`product-card ${ className }`>
           <Link
             to={ `/productDetails/${id}` }
             data-testid="product-detail-link"
@@ -67,7 +104,7 @@ class ProductCard extends React.Component {
         <button
           type="button"
           data-testid="product-add-to-cart"
-          onClick={ addItem }
+          onClick={ this.handleClick }
           title={ title }
           image={ image }
           price={ price }
@@ -82,6 +119,7 @@ class ProductCard extends React.Component {
 }
 
 ProductCard.propTypes = {
+  cartItems: PropType.arrayOf(PropType.object).isRequired,
   maxQuantity: PropType.number.isRequired,
   title: PropType.string.isRequired,
   image: PropType.string.isRequired,

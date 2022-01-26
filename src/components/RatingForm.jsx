@@ -87,8 +87,6 @@ class RatingForm extends React.Component {
             {[...Array(NUMBER_OF_STARS)].map((_star, index) => {
               const ratingValue = index + 1;
               return (
-              // eslint-disable-next-line jsx-a11y/label-has-associated-control
-
                 <label
                   htmlFor={ `radioRAting${ratingValue}` }
                   key={ `${index}-of-stars` }

@@ -37,9 +37,9 @@ class App extends React.Component {
     const { cartItems } = this.state;
     const item = cartItems.find((itemCart) => itemCart.title === title.value);
     item.quantity -= 1;
-    item.btnSumDisable = false;
-    if (item.quantity < 1) {
-      item.btnSubDisable = true;
+    if (item.quantity <= 0) {
+      cartItems.forEach((product, index) => (
+        (product.title === title.value) && cartItems.splice(index, 1)));
     }
     this.setState({ cartItems });
     this.reassignSum();
@@ -50,7 +50,6 @@ class App extends React.Component {
     const { cartItems } = this.state;
     const item = cartItems.find((itemCart) => itemCart.title === title.value);
     item.quantity += 1;
-    item.btnSubDisable = false;
     if (Number(item.quantity) === Number(item.maxQuantity)) {
       item.btnSumDisable = true;
     }
@@ -65,7 +64,7 @@ class App extends React.Component {
     this.setState({ sumProducts });
   }
 
-  addItem(event) {
+  async addItem(event) {
     const { title, image, price, maxQuantity } = event.target.attributes;
     const { cartItems } = this.state;
 
@@ -75,8 +74,9 @@ class App extends React.Component {
       const item = cartItems.find((itemCart) => itemCart.title === title.value);
       item.quantity += 1;
       this.setState({ cartItems });
+      this.reassignSum();
     } else {
-      this.setState((prevState) => ({
+      return this.setState((prevState) => ({
         cartItems: [...prevState.cartItems, {
           title: title.value,
           image: image.value,
@@ -84,11 +84,9 @@ class App extends React.Component {
           quantity: 1,
           maxQuantity: maxQuantity.value,
           btnSumDisable: false,
-          btnSubDisable: false,
         }],
-      }));
+      }), () => this.reassignSum());
     }
-    this.reassignSum();
   }
 
   render() {
@@ -116,6 +114,7 @@ class App extends React.Component {
                 <Home
                   addItem={ this.addItem }
                   cartItems={ cartItems }
+                  sumProducts={ sumProducts }
                 />) }
             />
             <Route
@@ -126,14 +125,12 @@ class App extends React.Component {
                   { ...props }
                   addItem={ this.addItem }
                   cartItems={ cartItems }
+                  sumProducts={ sumProducts }
                 />) }
             />
             <Route
               exact
               path="/checkout"
-              // render={ () => (
-              //   <Checkout cartItems={ cartItems } />
-              // ) }
             >
               <Checkout cartItems={ cartItems } sumProducts={ sumProducts } />
             </Route>

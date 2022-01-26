@@ -20,12 +20,14 @@ class Search extends React.Component {
   }
 
   renderProductList = () => {
+
     const {
       productList,
       addItem,
       cartItems,
     } = this.props;
     const { selector } = this.state;
+
     if (productList.length === 0) {
       return (
         <h2>

@@ -3,7 +3,13 @@ import PropType from 'prop-types';
 import '../styles/ProductCard.css';
 import { Link } from 'react-router-dom';
 
+const MAXIMUM_NUMBER_INSTALLMENTS = 10;
+const MINIMUM_NUMBER_INSTALLMENTS = 5;
+const MINIMUM_VALUE_MORE_INSTALLMENTS = 150;
+const MINIMUM_AMOUNT_INSTALL = 50;
+
 class ProductCard extends React.Component {
+
   constructor() {
     super();
     this.state = {
@@ -31,6 +37,21 @@ class ProductCard extends React.Component {
     }
   }
 
+  installments = (price) => (price >= MINIMUM_VALUE_MORE_INSTALLMENTS
+    ? `${MAXIMUM_NUMBER_INSTALLMENTS}x de ${(
+      price / MAXIMUM_NUMBER_INSTALLMENTS
+    ).toLocaleString('pt-br', {
+      style: 'currency',
+      currency: 'BRL',
+    })} sem juros no cartão de crédito`
+    : `${MINIMUM_NUMBER_INSTALLMENTS}x de ${(
+      price / MINIMUM_NUMBER_INSTALLMENTS
+    ).toLocaleString('pt-br', {
+      style: 'currency',
+      currency: 'BRL',
+    })} sem juros no cartão de crédito`);
+
+
   render() {
     const {
       title,
@@ -42,24 +63,44 @@ class ProductCard extends React.Component {
     } = this.props;
     const { className } = this.state;
     return (
-      <div
-        data-testid="product"
-        className={ className }
-      >
-        <Link
-          to={ `/productDetails/${id}` }
-          data-testid="product-detail-link"
-          key={ id }
-        >
-          <span>{ title }</span>
-          <img
-            className="product-image"
-            src={ image }
-            alt={ title }
-          />
-          <span>{ price }</span>
-        </Link>
-        { freeShipping && <p data-testid="free-shipping">Frete Grátis</p> }
+      <section className="container-product-card">
+        <div data-testid="product" className=`product-card ${ className }`>
+          <Link
+            to={ `/productDetails/${id}` }
+            data-testid="product-detail-link"
+            key={ id }
+          >
+            <div className="img-card-product">
+              <img src={ image } alt={ title } />
+            </div>
+            <div className="data-card-product">
+              <h3>
+                { title }
+              </h3>
+              <p>
+                { price.toLocaleString('pt-br', {
+                  style: 'currency',
+                  currency: 'BRL',
+                }) }
+              </p>
+              <p>
+                {
+                  price <= MINIMUM_AMOUNT_INSTALL
+                    ? `1x de ${price.toLocaleString('pt-br', {
+                      style: 'currency',
+                      currency: 'BRL',
+                    })} sem juros no cartão de crédito`
+                    : this.installments(price)
+                }
+              </p>
+              { freeShipping && (
+                <p data-testid="free-shipping" className="frete-gratis">
+                  Frete Grátis
+                </p>
+              ) }
+            </div>
+          </Link>
+        </div>
         <button
           type="button"
           data-testid="product-add-to-cart"
@@ -68,10 +109,11 @@ class ProductCard extends React.Component {
           image={ image }
           price={ price }
           maxquantity={ maxQuantity }
+          className="btn-card-product"
         >
           Comprar
         </button>
-      </div>
+      </section>
     );
   }
 }

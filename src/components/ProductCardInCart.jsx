@@ -12,7 +12,6 @@ export default class ProductCardInCart extends Component {
       price,
       qntProduct,
       btnSumDisable,
-      btnSubDisable,
     } = this.props;
     return (
       <section className="card-product">
@@ -30,7 +29,6 @@ export default class ProductCardInCart extends Component {
             data-testid="product-decrease-quantity"
             title={ title }
             onClick={ handleClickSubtraction }
-            disabled={ btnSubDisable }
           >
             -
           </button>
@@ -60,7 +58,6 @@ ProductCardInCart.propTypes = {
   handleClickSubtraction: PropTypes.func.isRequired,
   handleClickSum: PropTypes.func.isRequired,
   btnSumDisable: PropTypes.bool.isRequired,
-  btnSubDisable: PropTypes.bool.isRequired,
   qntProduct: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,

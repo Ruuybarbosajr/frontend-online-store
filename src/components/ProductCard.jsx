@@ -4,12 +4,47 @@ import '../styles/ProductCard.css';
 import { Link } from 'react-router-dom';
 
 class ProductCard extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      className: 'product-card',
+    };
+  }
+
+  componentDidMount = () => {
+    this.highlightCarItems();
+  }
+
+  handleClick = (target) => {
+    const { addItem } = this.props;
+    this.setState({ className: 'highlight' });
+    addItem(target);
+  }
+
+  highlightCarItems = () => {
+    const {
+      cartItems,
+      title,
+    } = this.props;
+    if (cartItems.some((item) => item.title === title)) {
+      this.setState({ className: 'highlight' });
+    }
+  }
+
   render() {
-    const { title, image, price, addItem, id, freeShipping, maxQuantity } = this.props;
+    const {
+      title,
+      image,
+      price,
+      id,
+      freeShipping,
+      maxQuantity,
+    } = this.props;
+    const { className } = this.state;
     return (
       <div
         data-testid="product"
-        className="product-card"
+        className={ className }
       >
         <Link
           to={ `/productDetails/${id}` }
@@ -28,7 +63,7 @@ class ProductCard extends React.Component {
         <button
           type="button"
           data-testid="product-add-to-cart"
-          onClick={ addItem }
+          onClick={ this.handleClick }
           title={ title }
           image={ image }
           price={ price }
@@ -42,6 +77,7 @@ class ProductCard extends React.Component {
 }
 
 ProductCard.propTypes = {
+  cartItems: PropType.arrayOf(PropType.object).isRequired,
   maxQuantity: PropType.number.isRequired,
   title: PropType.string.isRequired,
   image: PropType.string.isRequired,

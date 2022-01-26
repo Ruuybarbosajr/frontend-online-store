@@ -6,7 +6,7 @@ import CartIcon from './CartIcon';
 
 class Header extends React.Component {
   render() {
-    const { cartItems } = this.props;
+    const { cartItems, sumProducts } = this.props;
     return (
       <header className="header">
         <Link to="/"><h1>Frontend Online store</h1></Link>
@@ -16,10 +16,13 @@ class Header extends React.Component {
             data-testid="shopping-cart-size"
             className="shopping-cart-size"
           >
-            {cartItems.reduce((result, iten) => result + iten.quantity, 0)}
+            {cartItems.reduce((result, item) => result + item.quantity, 0)}
           </div>
         </div>
-        <CartIcon />
+        <CartIcon
+          cartItems={ cartItems }
+          sumProducts={ sumProducts }
+        />
       </header>
     );
   }
@@ -27,6 +30,7 @@ class Header extends React.Component {
 
 Header.propTypes = {
   cartItems: propTypes.arrayOf(propTypes.object).isRequired,
+  sumProducts: propTypes.number.isRequired,
 };
 
 export default Header;

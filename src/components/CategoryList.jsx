@@ -8,7 +8,7 @@ export default class CategoryList extends Component {
 
     return (
       <label
-        className="aside-iten"
+        className="aside-item"
         htmlFor={ id }
         data-testid="category"
       >

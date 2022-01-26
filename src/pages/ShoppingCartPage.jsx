@@ -5,57 +5,12 @@ import ProductCardInCart from '../components/ProductCardInCart';
 import ShoppingCartIcon from '../shopping-cart.png';
 import Header from '../components/Header';
 
-// const product = [
-//   {
-//     thumbnail: 'http://http2.mlstatic.com/D_686864-MLB47324643110_092021-O.jpg',
-//     title: 'Relogio Feminino Dourado Barato Original Kit Colar E Brincos',
-//     price: 129,
-//     quantity: 2,
-//   },
-//   {
-//     thumbnail: 'http://http2.mlstatic.com/D_686864-MLB47324643110_092021-O.jpg',
-//     title: 'Relogio Feminino Dourado Barato Original Kit Colar E Brincos',
-//     price: 49,
-//     quantity: 1,
-//   },
-//   {
-//     thumbnail: 'http://http2.mlstatic.com/D_686864-MLB47324643110_092021-O.jpg',
-//     title: 'Relogio Feminino Dourado Barato Original Kit Colar E Brincos',
-//     price: 89,
-//     quantity: 2,
-//   },
-//   {
-//     thumbnail: 'http://http2.mlstatic.com/D_686864-MLB47324643110_092021-O.jpg',
-//     title: 'Relogio Feminino Dourado Barato Original Kit Colar E Brincos',
-//     price: 10,
-//     quantity: 2,
-//   },
-//   {
-//     thumbnail: 'http://http2.mlstatic.com/D_686864-MLB47324643110_092021-O.jpg',
-//     title: 'Relogio Feminino Dourado Barato Original Kit Colar E Brincos',
-//     price: 125,
-//     quantity: 1,
-//   },
-// ];
-
 export default class ShoppingCartPage extends React.Component {
   constructor() {
     super();
     this.state = {
-      isCartEmpty: false,
       redirect: false,
     };
-  }
-
-  componentDidMount() {
-    this.checkCart();
-  }
-
-  checkCart = () => {
-    const { cartItems } = this.props;
-    if (cartItems.length === 0) {
-      this.setState({ isCartEmpty: true });
-    }
   }
 
   redirectToCheckout = () => {
@@ -64,7 +19,6 @@ export default class ShoppingCartPage extends React.Component {
 
   render() {
     const {
-      isCartEmpty,
       redirect,
     } = this.state;
     const {
@@ -78,7 +32,7 @@ export default class ShoppingCartPage extends React.Component {
       <div>
         <Header cartItems={ cartItems } />
         {redirect && <Redirect to="/checkout" />}
-        { isCartEmpty ? (
+        { cartItems.length === 0 ? (
           <h3
             data-testid="shopping-cart-empty-message"
           >

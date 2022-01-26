@@ -17,8 +17,8 @@ class Home extends React.Component {
       searchValue: '',
       productList: [],
       createList: false,
+      loading: false,
       category: '',
-
     };
   }
 
@@ -32,18 +32,18 @@ class Home extends React.Component {
 
   searchingForProducts = async () => {
     const { searchValue, category } = this.state;
+    this.setState({ loading: true, createList: true });
     const apiResult = await getProductsFromCategoryAndQuery(category, searchValue);
     const searchResults = apiResult.results;
-    this.setState({ productList: searchResults, createList: true });
+    this.setState({
+      productList: searchResults,
+      loading: false,
+    });
   }
 
   handleChange = (event) => {
     const { value, name, type } = event.target;
     this.setState({ [name]: value }, () => this.generateListByCategory(type));
-  }
-
-  handleClickRadio = (event) => {
-    console.log(event.target.value);
   }
 
   getAllCategory = async () => {
@@ -56,16 +56,31 @@ class Home extends React.Component {
     </h2>
   )
 
+  showCartAside = () => {
+    const { displayCartAside } = this.state;
+    const check = displayCartAside === 'cart-aside' ? 'hiding' : 'cart-aside';
+    this.setState({ displayCartAside: check });
+  }
+
   render() {
-    const { categoriesList,
+    const {
+      categoriesList,
       searchValue,
       createList,
       productList,
+      loading,
     } = this.state;
-    const { addItem, cartItems } = this.props;
+    const {
+      addItem,
+      cartItems,
+      sumProducts,
+    } = this.props;
     return (
       <div>
-        <Header cartItems={ cartItems } />
+        <Header
+          sumProducts={ sumProducts }
+          cartItems={ cartItems }
+        />
         <div className="home">
           <section>
             Categorias
@@ -84,8 +99,10 @@ class Home extends React.Component {
               searchingForProducts={ this.searchingForProducts }
               searchValue={ searchValue }
               createList={ createList }
+              loading={ loading }
               productList={ productList }
               addItem={ addItem }
+              cartItems={ cartItems }
             />
             { !createList && this.renderInitialPhrase() }
           </section>
@@ -97,6 +114,7 @@ class Home extends React.Component {
 
 Home.propTypes = {
   addItem: propTypes.func.isRequired,
+  sumProducts: propTypes.number.isRequired,
   cartItems: propTypes.arrayOf(propTypes.object).isRequired,
 };
 

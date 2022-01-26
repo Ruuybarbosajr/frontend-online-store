@@ -9,7 +9,6 @@ const MINIMUM_VALUE_MORE_INSTALLMENTS = 150;
 const MINIMUM_AMOUNT_INSTALL = 50;
 
 class ProductCard extends React.Component {
-
   constructor() {
     super();
     this.state = {
@@ -51,7 +50,6 @@ class ProductCard extends React.Component {
       currency: 'BRL',
     })} sem juros no cartão de crédito`);
 
-
   render() {
     const {
       title,
@@ -64,7 +62,7 @@ class ProductCard extends React.Component {
     const { className } = this.state;
     return (
       <section className="container-product-card">
-        <div data-testid="product" className=`product-card ${ className }`>
+        <div data-testid="product" className={ `product-card ${className}` }>
           <Link
             to={ `/productDetails/${id}` }
             data-testid="product-detail-link"

@@ -15,5 +15,6 @@
 .itens-list {
   display: flex;
   flex-wrap: wrap;
+  gap: 1vw;
   margin: 30px;
 }

@@ -8,6 +8,7 @@ const productNotFoundPhrase = 'Nenhum produto foi encontrado';
 class Search extends React.Component {
   renderProductList = () => {
     const { productList, addItem } = this.props;
+
     if (productList.length === 0) {
       return (
         <span>

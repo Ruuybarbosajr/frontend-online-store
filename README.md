@@ -1,4 +1,4 @@
-# Boas vindas ao repositório do projeto de Front-End Online Store!
+# Boas vindas ao repositório do Front-End Online Store!
 
 # Habilidades
 
